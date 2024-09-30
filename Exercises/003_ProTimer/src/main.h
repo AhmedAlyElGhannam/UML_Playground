@@ -63,5 +63,7 @@ typedef struct
 } protimer_t;
 
 void protimer_init(protimer_t *const mobj);
+EVENT_STATUS_t protimer_state_machine(protimer_t *const mobj, const event_t *const e);
+void protimer_event_dispatcher (protimer_t *const mobj, const event_t *const e);
 
 #endif
