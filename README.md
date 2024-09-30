@@ -12,4 +12,4 @@
 1. Output (also known as `entry action`) is produced inside the state itself; not during `transition`.
 1. Output is represented inside state.
 
-
+ 
