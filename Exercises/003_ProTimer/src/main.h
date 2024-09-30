@@ -26,10 +26,18 @@ typedef enum
     STAT
 } STATE_t;
 
+// defining event status
+typedef enum 
+{
+    EVENT_HANDLED,
+    EVENT_IGNORED,
+    EVENT_TRANSITION
+} EVENT_STATUS_t;
+
 // struct for generic/super event
 typedef struct
 {
-    uint8_t sig; // event signal
+    SIGNAL_t sig; // event signal
 } event_t;
 
 // user generated event
@@ -45,6 +53,15 @@ typedef struct
     uint8_t ss; // subsecond
 } tick_event_t;
 
+// main app object
+typedef struct
+{
+    STATE_t active_state;
+    uint16_t counter_time;
+    uint16_t elapsed_time;
+    uint16_t productive_time;
+} protimer_t;
 
+void protimer_init(protimer_t *const mobj);
 
 #endif
