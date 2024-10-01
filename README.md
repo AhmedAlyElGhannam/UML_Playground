@@ -12,4 +12,9 @@
 1. Output (also known as `entry action`) is produced inside the state itself; not during `transition`.
 1. Output is represented inside state.
 
- 
+##  Implementation of State Machine
+1. Nested Switch Approach.
+1. State Table Approach.
+1. State Handler Approach.
+
+
