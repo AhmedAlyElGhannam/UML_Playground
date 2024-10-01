@@ -14,7 +14,7 @@ typedef enum
     ABRT,
     ENTRY,
     EXIT
-} SIGNAL_t;
+} PROTIMER_SIGNAL_t;
 
 // defined states in machine
 typedef enum 
@@ -24,7 +24,7 @@ typedef enum
     COUNTDOWN,
     PAUSE,
     STAT
-} STATE_t;
+} PROTIMER_STATE_t;
 
 // defining event status
 typedef enum 
@@ -34,10 +34,18 @@ typedef enum
     EVENT_TRANSITION
 } EVENT_STATUS_t;
 
+// defining button states
+typedef enum
+{
+    RELEASED,
+    BOUNCING,
+    PRESSED
+} BUTTON_STATE_t;
+
 // struct for generic/super event
 typedef struct
 {
-    SIGNAL_t sig; // event signal
+    PROTIMER_SIGNAL_t sig; // event signal
 } event_t;
 
 // user generated event
@@ -56,7 +64,7 @@ typedef struct
 // main app object
 typedef struct
 {
-    STATE_t active_state;
+    PROTIMER_STATE_t active_state;
     uint16_t counter_time;
     uint16_t elapsed_time;
     uint16_t productive_time;
