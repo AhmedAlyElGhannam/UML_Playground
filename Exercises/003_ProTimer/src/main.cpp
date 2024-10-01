@@ -1,32 +1,5 @@
 #include "main.h"
 
-// defined pins
-#define BTN1_PIN_INC_TIME         2
-#define BTN2_PIN_DEC_TIME         3
-#define BTN3_PIN_START_PAUSE      4
-#define LCD_PIN_RS                5
-#define LCD_PIN_RW                6
-#define LCD_PIN_EN                7
-#define LCD_PIN_D4                8
-#define LCD_PIN_D5                9
-#define LCD_PIN_D6                10
-#define LCD_PIN_D7                11
-#define BUZZER_PIN                12
-
-// defining button pad value (for software debouncing)
-/**
- *      B1 B2 B3 V Sig
- *      0  0  1  1 START_PAUSE
- *      0  1  0  2 DEC_TIME
- *      1  0  0  4 INC_TIME
- *      1  1  0  6 ABRT
- *      X  X  X  X DC (For Other Combinations)
- */
-#define BTN_PAD_INC_TIME          4
-#define BTN_PAD_DEC_TIME          2
-#define BTN_PAD_ABRT              6
-#define BTN_PAD_START_PAUSE       1
-
 // define protimer object as static
 static protimer_t protimer;
 
@@ -44,6 +17,7 @@ user_event_t user_event;
 // function prototypes
 static uint8_t process_button_pad_value(uint8_t buttonPadValue);
 void protimer_event_dispatcher (protimer_t *const mobj, const event_t *const e);
+static void disp_init();
 
 void setup() 
 {
@@ -57,6 +31,9 @@ void setup()
     pinMode(BTN1_PIN_INC_TIME, INPUT);
     pinMode(BTN2_PIN_DEC_TIME, INPUT);
     pinMode(BTN3_PIN_START_PAUSE, INPUT);
+
+    // set buzzer pin
+    //pinMode(BUZZER_PIN, OUTPUT);
 
     // initial pseudostate
     protimer_init(&protimer);
@@ -189,4 +166,14 @@ static uint8_t process_button_pad_value(uint8_t buttonPadValue)
     }
 
     return 0;
+}
+
+static void disp_init()
+{
+    lcd_begin(16, 2);
+    lcd_clear();
+    lcd_move_cursor_L_to_R();
+    lcd_set_cursor(0, 0);
+    lcd_no_auto_scroll();
+    lcd_cursor_off();
 }

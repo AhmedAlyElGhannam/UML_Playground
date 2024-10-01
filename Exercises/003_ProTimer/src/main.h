@@ -4,6 +4,33 @@
 #include <Arduino.h>
 #include "lcd.h"
 
+// defined pins
+#define BTN1_PIN_INC_TIME         2
+#define BTN2_PIN_DEC_TIME         3
+#define BTN3_PIN_START_PAUSE      4
+#define LCD_PIN_RS                5
+#define LCD_PIN_RW                6
+#define LCD_PIN_EN                7
+#define LCD_PIN_D4                8
+#define LCD_PIN_D5                9
+#define LCD_PIN_D6                10
+#define LCD_PIN_D7                11
+#define BUZZER_PIN                12
+
+// defining button pad value (for software debouncing)
+/**
+ *      B1 B2 B3 V Sig
+ *      0  0  1  1 START_PAUSE
+ *      0  1  0  2 DEC_TIME
+ *      1  0  0  4 INC_TIME
+ *      1  1  0  6 ABRT
+ *      X  X  X  X DC (For Other Combinations)
+ */
+#define BTN_PAD_INC_TIME          4
+#define BTN_PAD_DEC_TIME          2
+#define BTN_PAD_ABRT              6
+#define BTN_PAD_START_PAUSE       1
+
 // defined signals in machine
 typedef enum
 {
